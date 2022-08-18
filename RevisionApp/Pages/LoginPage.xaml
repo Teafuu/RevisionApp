@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+    
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="RevisionApp.Pages.MainPage">
+
+    <ScrollView>
+        <VerticalStackLayout
+            Spacing="25"
+            Padding="30,0"
+            VerticalOptions="Center">
+
+            <Label Text="{Binding Title}"
+                   TextColor="Green"
+                   FontSize="50"
+                   HorizontalOptions="Center"
+                   x:Name="Title"/>
+
+            <Entry Text="{Binding Username}"
+                   MaxLength="20"
+                   Placeholder="Username"
+                   PlaceholderColor="BurlyWood"
+                   HorizontalOptions="Center"
+                   WidthRequest="200"/>
+
+            <Entry Text="{Binding Password}"
+                   MaxLength="20"
+                   Placeholder="Password"
+                   PlaceholderColor="BurlyWood"
+                   HorizontalOptions="Center"
+                   WidthRequest="200"
+                   IsPassword="True"/>
+
+            <Button Text="Login" 
+                    HorizontalOptions="Center"
+                    Command="{Binding LoginCommand}"
+                    BorderColor="DarkSeaGreen"
+                    TextColor="SaddleBrown"
+                    BackgroundColor="DarkSeaGreen"/>
+
+            <Button Text="Don't have an account? Click here!"
+                    TextColor="BurlyWood"
+                    FontSize="12"
+                    HorizontalOptions="Center"
+                    VerticalOptions="Center"
+                    BorderColor="Transparent"
+                    BackgroundColor="Transparent"
+                    Command="{Binding RegisterAccountCommand}"/>
+
+            <GraphicsView>
+
+            </GraphicsView></VerticalStackLayout>
+    </ScrollView>
+
+</ContentPage>
