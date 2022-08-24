@@ -13,10 +13,9 @@
             <Label Text="{Binding Title}"
                    TextColor="Green"
                    FontSize="50"
-                   HorizontalOptions="Center"
-                   x:Name="Title"/>
+                   HorizontalOptions="Center"/>
 
-            <Entry Text="{Binding Username}"
+            <Entry Text="{Binding Email}"
                    MaxLength="20"
                    Placeholder="Username"
                    PlaceholderColor="BurlyWood"
@@ -46,10 +45,13 @@
                     BorderColor="Transparent"
                     BackgroundColor="Transparent"
                     Command="{Binding RegisterAccountCommand}"/>
+            <Label Text="{Binding Error, Mode=TwoWay}"
+                   TextColor="Red"
+                   FontSize="14"
+                   HorizontalOptions="Center"
+                   VerticalOptions="Center"/>
 
-            <GraphicsView>
-
-            </GraphicsView></VerticalStackLayout>
+        </VerticalStackLayout>
     </ScrollView>
 
 </ContentPage>

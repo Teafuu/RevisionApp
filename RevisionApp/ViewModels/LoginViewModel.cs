@@ -2,40 +2,54 @@
 
 namespace RevisionApp.ViewModels
 {
-    public class LoginViewModel
+    public class LoginViewModel : BaseViewModel
     {
-        private readonly RevisionService service;
+        private readonly RevisionService _service;
 
-        public string Username { get; set; }
-        public string Password { get; set; }
+        public string Email { get; set; } = string.Empty;
+        public string Password { get; set; } = string.Empty;
         public string Title { get; set; } = "Welcome!";
+        public string Error { get => _error; set { _error = value; OnPropertyChanged(); } } 
+
         public Command LoginCommand => new Command(Login);
         public Command RegisterAccountCommand => new Command(RegisterAccount);
 
+        #region private properties
+        private string _error;
+        #endregion
+
+
         public LoginViewModel(RevisionService service)
         {
-            this.service = service;
+            _service = service;
         }
         private void Login()
         {
-            if (ValidateCredentials(Username, Password) == true)    
+            /*Shell.Current.GoToAsync("//HomePage");
+            return;*/
+
+            if (!Email.Contains("@"))
             {
-                Shell.Current.GoToAsync("//HomePage");
+                Error = "Invalid Email";
+                return;
             }
 
-            else
+            var response = _service.Login(Email, Password);
+
+            if (response.Success)
             {
-                Title = "Wrong Credentials";
+                Shell.Current.GoToAsync("//HomePage");
+                return;
             }
+
+            Error = response.Error;
+
         }
         private void RegisterAccount() 
         {
             Shell.Current.GoToAsync("//CreateAccountPage");
         }
 
-        bool ValidateCredentials(string username, string password)
-        {
-            return service.Login(username, password);
-        }
+       
     }
 }

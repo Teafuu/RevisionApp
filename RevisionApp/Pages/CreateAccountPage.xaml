@@ -15,13 +15,7 @@
                    HorizontalOptions="Center"/>
 
             <Entry
-                   Text="{Binding Username}"
-                   MaxLength="30"
-                   Placeholder="Username"
-                   HorizontalOptions="Center"
-                   WidthRequest="200"/>
-            <Entry
-                   Text=""
+                   Text="{Binding Email}"
                    MaxLength="30"
                    Placeholder="Email"
                    HorizontalOptions="Center"
@@ -36,7 +30,7 @@
                    IsPassword="True"/>
             
             <Entry
-                   Text=""
+                   Text="{Binding ValidatePassword}"
                    MaxLength="30"
                    Placeholder="Re-enter Password"
                    HorizontalOptions="Center"
@@ -46,6 +40,12 @@
             <Button Text="Register" 
                     HorizontalOptions="Center"
                     Command="{Binding RegisterCommand}"/>
+
+            <Label Text="{Binding Error, Mode=TwoWay}"
+                   TextColor="Red"
+                   FontSize="14"
+                   HorizontalOptions="Center"
+                   VerticalOptions="Center"/>
 
         </VerticalStackLayout>
     </ScrollView>

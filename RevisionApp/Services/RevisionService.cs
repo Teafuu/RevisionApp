@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Newtonsoft.Json;
+using RevisionApp.Services.Dto.Request;
+using RevisionApp.Services.Dto.Response;
 
 namespace RevisionApp.Services
 {
@@ -15,17 +18,30 @@ namespace RevisionApp.Services
 
         public HttpClient Client { get; }
 
-        public bool CreateAccount(string username, string password)
+        public CreateAccountResponse CreateAccount(string email, string password)
         {
-            var response = Client.PostAsync($"User/CreateUser?email={username}&password={password}", new StringContent("")).Result;
-            return response.Content.ReadAsStringAsync().Result == "true";
+            var request = new CreateAccountRequest(email, password);
+            var stringContent = new StringContent(JsonConvert.SerializeObject(request), Encoding.UTF8, "application/json");
+
+            var result = Client.PostAsync($"User/CreateUser", stringContent).Result;
+
+            var response =
+                JsonConvert.DeserializeObject<CreateAccountResponse>(result.Content.ReadAsStringAsync().Result);
+
+            return response;
         }
 
-        public bool Login(string username, string password)
+        public ValidateAccountResponse Login(string email, string password)
         {
-            var response = Client.GetStringAsync($"User/ValidateCredentials?email={username}&password={password}").Result;
+            var request = new ValidateAccountRequest(email, password);
+            var stringContent = new StringContent(JsonConvert.SerializeObject(request), Encoding.UTF8, "application/json");
 
-            return response.ToLower() == "true";
+            var result = Client.PostAsync($"User/ValidateUser", stringContent).Result;
+
+            var response =
+                JsonConvert.DeserializeObject<ValidateAccountResponse>(result.Content.ReadAsStringAsync().Result);
+
+            return response;
         }
     }
 }

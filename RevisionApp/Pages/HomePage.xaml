@@ -5,10 +5,11 @@
              Title="HomePage">
     
     
-    <VerticalStackLayout>
+    <VerticalStackLayout BackgroundColor="White">
         <Label 
             Text="Hello! [Username]"
             VerticalOptions="Center" 
             HorizontalOptions="Center" />
+
     </VerticalStackLayout>
 </ContentPage>
