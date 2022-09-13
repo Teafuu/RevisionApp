@@ -3,13 +3,10 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="RevisionApp.Pages.HomePage"
              Title="HomePage">
-    
-    
-    <VerticalStackLayout BackgroundColor="White">
+    <VerticalStackLayout BackgroundColor="Cyan">
         <Label 
             Text="Hello! [Username]"
             VerticalOptions="Center" 
             HorizontalOptions="Center" />
-
     </VerticalStackLayout>
 </ContentPage>

@@ -9,10 +9,10 @@ namespace RevisionApp.ViewModels
         public string Email { get; set; } = string.Empty;
         public string Password { get; set; } = string.Empty;
         public string Title { get; set; } = "Welcome!";
-        public string Error { get => _error; set { _error = value; OnPropertyChanged(); } } 
+        public string Error { get => _error; set { _error = value; OnPropertyChanged(nameof(Error));} } 
 
-        public Command LoginCommand => new Command(Login);
-        public Command RegisterAccountCommand => new Command(RegisterAccount);
+        public Command LoginCommand => new(Login);
+        public Command RegisterAccountCommand => new(RegisterAccount);
 
         #region private properties
         private string _error;
@@ -25,10 +25,11 @@ namespace RevisionApp.ViewModels
         }
         private void Login()
         {
-            /*Shell.Current.GoToAsync("//HomePage");
-            return;*/
+            Shell.Current.GoToAsync("//HomePage");
 
-            if (!Email.Contains("@"))
+            return;
+
+            if (!Email.Contains('@'))
             {
                 Error = "Invalid Email";
                 return;

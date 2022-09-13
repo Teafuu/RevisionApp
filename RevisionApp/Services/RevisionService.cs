@@ -43,5 +43,14 @@ namespace RevisionApp.Services
 
             return response;
         }
+
+        internal GetTopicsResponse GetTopics(int userId)
+        {
+            var result = Client.GetAsync($"Topic/GetTopics?id={userId}").Result;
+
+            var response = JsonConvert.DeserializeObject<GetTopicsResponse>(result.Content.ReadAsStringAsync().Result);
+
+            return response;
+        }
     }
 }

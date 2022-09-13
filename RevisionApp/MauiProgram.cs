@@ -1,8 +1,6 @@
 ﻿using RevisionApp.Pages;
 using RevisionApp.Services;
 using RevisionApp.ViewModels;
-using RevisionApp.ViewModels.Views;
-using RevisionApp.Views;
 
 namespace RevisionApp;
 
@@ -18,8 +16,12 @@ public static class MauiProgram
 		builder.Services.AddScoped<CreateAccountPage>();
 		builder.Services.AddScoped<CreateAccountViewModel>();
 
-		builder.Services.AddScoped<TopicView>();
-		builder.Services.AddScoped<TopicViewModel>();
+        builder.Services.AddScoped<HomePage>();
+        builder.Services.AddScoped<HomeViewModel>();
+
+        builder.Services.AddScoped<TopicsPage>();
+        builder.Services.AddScoped<TopicsViewModel>();
+
         builder.Services.AddHttpClient<RevisionService>(client =>
         {
             client.BaseAddress = new Uri("https://localhost:7142");
