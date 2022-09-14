@@ -1,56 +1,71 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 using RevisionApp.Services.Dto.Request;
 using RevisionApp.Services.Dto.Response;
+using System.Text;
 
 namespace RevisionApp.Services
 {
     public class RevisionService
     {
-        public RevisionService(HttpClient client)
-        {
-            Client = client;
-        }
-
         public HttpClient Client { get; }
 
+        public RevisionService(HttpClient client) => Client = client;
+        
         public CreateAccountResponse CreateAccount(string email, string password)
         {
-            var request = new CreateAccountRequest(email, password);
-            var stringContent = new StringContent(JsonConvert.SerializeObject(request), Encoding.UTF8, "application/json");
+            try
+            {
+                var request = new CreateAccountRequest(email, password);
+                var stringContent = new StringContent(JsonConvert.SerializeObject(request), Encoding.UTF8, "application/json");
 
-            var result = Client.PostAsync($"User/CreateUser", stringContent).Result;
+                var result = Client.PostAsync($"User/CreateUser", stringContent).Result;
 
-            var response =
-                JsonConvert.DeserializeObject<CreateAccountResponse>(result.Content.ReadAsStringAsync().Result);
+                var response =
+                    JsonConvert.DeserializeObject<CreateAccountResponse>(result.Content.ReadAsStringAsync().Result);
 
-            return response;
+                return response;
+
+            }
+            catch (Exception e)
+            {
+                return new CreateAccountResponse { Error = e.Message, Success = false };
+            }
         }
 
         public ValidateAccountResponse Login(string email, string password)
         {
-            var request = new ValidateAccountRequest(email, password);
-            var stringContent = new StringContent(JsonConvert.SerializeObject(request), Encoding.UTF8, "application/json");
+            try
+            {
+                var request = new ValidateAccountRequest(email, password);
+                var stringContent = new StringContent(JsonConvert.SerializeObject(request), Encoding.UTF8, "application/json");
 
-            var result = Client.PostAsync($"User/ValidateUser", stringContent).Result;
+                var result = Client.PostAsync($"User/ValidateUser", stringContent).Result;
 
-            var response =
-                JsonConvert.DeserializeObject<ValidateAccountResponse>(result.Content.ReadAsStringAsync().Result);
+                var response =
+                    JsonConvert.DeserializeObject<ValidateAccountResponse>(result.Content.ReadAsStringAsync().Result);
 
-            return response;
+                return response;
+            }
+            catch(Exception e)
+            {
+                return new ValidateAccountResponse { Error = e.Message, Success = false};
+            }
         }
 
         internal GetTopicsResponse GetTopics(int userId)
         {
-            var result = Client.GetAsync($"Topic/GetTopics?id={userId}").Result;
-
-            var response = JsonConvert.DeserializeObject<GetTopicsResponse>(result.Content.ReadAsStringAsync().Result);
-
-            return response;
+            try
+            {
+                var result = Client.GetAsync($"Topic/GetTopics?id={userId}").Result;
+                
+                var response = JsonConvert.DeserializeObject<GetTopicsResponse>(result.Content.ReadAsStringAsync().Result);
+                
+                return response;
+            }
+            catch(Exception)
+            {
+                return null;
+            }
         }
     }
 }

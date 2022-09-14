@@ -2,21 +2,33 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:controls="clr-namespace:RevisionApp.Views"
-             x:Class="RevisionApp.Pages.TopicsPage"
-             Title="TopicsPage">
-    <VerticalStackLayout>
-        <CollectionView ItemsSource="{Binding Topics}">
-            <CollectionView.ItemTemplate>
-                <DataTemplate>
-                    <controls:TopicView
-                        TopicTitle="{Binding Title}"
-                        TopicDescription="{Binding Description}"
-                        ControlTemplate="{StaticResource TopicViewControlTemplate}"/>
-                </DataTemplate>
 
-            </CollectionView.ItemTemplate>
+             x:Class="RevisionApp.Pages.TopicsPage"
+             Title="TopicsPage"
+             BackgroundColor="White">
+
+    <VerticalStackLayout>
+        <Label Text = "Topics" Style="{StaticResource HeaderStyle}"/>
+            <CollectionView x:Name="TopicCollectionView"
+                                    ItemsSource="{Binding Topics}" Margin="10"
+                                    SelectionMode="Single"
+                                    SelectionChangedCommand="{Binding CollectionChangeCommand}"
+                                    SelectionChangedCommandParameter="{Binding SelectedItem, Source={x:Reference TopicCollectionView}}"
+                            HorizontalOptions="Center">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <controls:TopicFutureView
+                            TopicTitle="{Binding Title}"
+                            TopicRevisionDate="{Binding RevisionDate}"
+                            TopicColour="{Binding MauiColour}"
+                            ControlTemplate="{StaticResource TopicFutureViewControlTemplate}"/>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            <CollectionView.ItemsLayout>
+                <GridItemsLayout 
+                    Orientation="Vertical"
+                    Span="2"/>
+            </CollectionView.ItemsLayout>
         </CollectionView>
-        
-        
     </VerticalStackLayout>
 </ContentPage>

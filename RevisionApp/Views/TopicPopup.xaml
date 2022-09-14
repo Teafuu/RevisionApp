@@ -1,0 +1,33 @@
+<toolkit:Popup xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+               xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+               xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+               x:Class="RevisionApp.Views.TopicPopup"
+                xmlns:controls="clr-namespace:RevisionApp.Views"
+               Color="Transparent"
+               Size="250, 300">
+    <Border
+        Margin="10"
+        Padding="4"
+        BackgroundColor="{Binding TopicColour}"
+        StrokeThickness="0">
+        <VerticalStackLayout>
+            <Label Padding="15" Text="{Binding Topic.Title}" Style="{StaticResource TextStyle}" TextColor="SaddleBrown" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
+            <Label Padding="15" Text="{Binding Description}" Style="{StaticResource TextStyle}" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
+            <Label Padding="15" Text="{Binding ReminderCount}" Style="{StaticResource TextStyle}" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
+            <Label Padding="15" Text="Todays revision complete?" Style="{StaticResource TextStyle}" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
+            <HorizontalStackLayout HorizontalOptions="Center">
+                <controls:ButtonView ButtonText="No" ButtonColour="#ff8f8f" ButtonCommand="{Binding NoCommand}" ControlTemplate="{StaticResource ButtonViewControlTemplate}"/>
+                <controls:ButtonView ButtonText="Yes" ButtonColour="#bcf697" ButtonCommand="{Binding YesCommand}" ControlTemplate="{StaticResource ButtonViewControlTemplate}"/>
+            </HorizontalStackLayout>
+        </VerticalStackLayout>
+        <Border.StrokeShape>
+            <RoundRectangle CornerRadius="30"/>
+        </Border.StrokeShape>
+        <Border.Shadow>
+            <Shadow Brush="Black"
+                    Offset="1, 5"
+                    Radius="5"
+                    Opacity="0.4" />
+        </Border.Shadow>
+    </Border>
+</toolkit:Popup>

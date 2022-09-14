@@ -49,6 +49,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <PackageReference Include="CommunityToolkit.Maui" Version="1.2.0" />
 	  <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="6.0.0" />
 	  <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="6.0.0" />
 	  <PackageReference Include="Microsoft.Extensions.Http" Version="6.0.0" />
@@ -71,6 +72,18 @@
 	  <MauiXaml Update="Pages\TopicsPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	  <MauiXaml Update="Views\ButtonView.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\TopicPopup.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\EntryView.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\TopicFutureView.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Views\TopicView.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
@@ -79,6 +92,18 @@
 	<ItemGroup>
 	  <Compile Update="Pages\LoginPage.xaml.cs">
 	    <DependentUpon>LoginPage.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="Views\ButtonView.xaml.cs">
+	    <DependentUpon>ButtonView.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="Views\TopicPopup.xaml.cs">
+	    <DependentUpon>TopicPopup.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="Views\EntryView.xaml.cs">
+	    <DependentUpon>EntryView.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="Views\TopicFutureView.xaml.cs">
+	    <DependentUpon>TopicFutureView.xaml</DependentUpon>
 	  </Compile>
 	</ItemGroup>
 

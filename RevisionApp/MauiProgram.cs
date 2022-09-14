@@ -1,4 +1,5 @@
-﻿using RevisionApp.Pages;
+﻿using CommunityToolkit.Maui;
+using RevisionApp.Pages;
 using RevisionApp.Services;
 using RevisionApp.ViewModels;
 
@@ -29,6 +30,7 @@ public static class MauiProgram
 
         builder
 			.UseMauiApp<App>()
+			.UseMauiCommunityToolkit()
 			.ConfigureFonts(fonts =>
 			{
 				fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");

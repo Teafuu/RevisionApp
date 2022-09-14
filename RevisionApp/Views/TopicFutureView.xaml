@@ -1,18 +1,20 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="RevisionApp.Views.TopicView">
+             x:Class="RevisionApp.Views.TopicFutureView">
     <ContentView.Resources>
-        <ControlTemplate x:Key="TopicViewControlTemplate">
+        <ControlTemplate x:Key="TopicFutureViewControlTemplate">
             <Border BindingContext="{Binding Source={RelativeSource TemplatedParent}}"
                     Margin="10"
                     Padding="4"
                     BackgroundColor="{Binding TopicColour}"
                     WidthRequest="200"
-                    HeightRequest="50"
+                    HeightRequest="150"
                     StrokeThickness="0">
                 <VerticalStackLayout>
-                    <Label Text="{Binding TopicTitle}" Style="{StaticResource TextStyle}" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
+                    <Label Padding="15" Text="{Binding TopicTitle}" Style="{StaticResource TextStyle}" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
+                    <Label Padding="15" Text="Next revision:" Style="{StaticResource TextStyle}" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
+                    <Label Text="{Binding RevisionDate}" Style="{StaticResource TextStyle}" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
                 </VerticalStackLayout>
                 <Border.StrokeShape>
                     <RoundRectangle CornerRadius="30"/>
