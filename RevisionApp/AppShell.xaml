@@ -16,8 +16,7 @@
         Route="CreateAccountPage"/>
     </TabBar>
 
-    <TabBar>
-       
+    <TabBar >
         <Tab Title="Home"
              Icon="">
             <ShellContent
@@ -43,12 +42,10 @@
 
         <Tab Title="Settings"
              Icon="">
-
             <ShellContent
                 ContentTemplate="{DataTemplate views:SettingsPage}"
                 Route="SettingsPage"/>
         </Tab>
-
     </TabBar>
 
 </Shell>

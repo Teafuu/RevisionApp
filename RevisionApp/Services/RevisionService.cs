@@ -52,6 +52,39 @@ namespace RevisionApp.Services
             }
         }
 
+        public void CreateTopic(CreateTopicRequest request)
+        {
+            try
+            {
+                var stringContent = new StringContent(JsonConvert.SerializeObject(request), Encoding.UTF8, "application/json");
+
+                var result = Client.PostAsync($"Topic/PostTopic", stringContent).Result;
+
+                if (!result.IsSuccessStatusCode)
+                    throw new Exception(result.Content.ReadAsStringAsync().Result);
+            }
+            catch (Exception e)
+            {
+                
+            }
+        }
+        public void PatchTopic(PatchTopicRequest request)
+        {
+            try
+            {
+                var stringContent = new StringContent(JsonConvert.SerializeObject(request), Encoding.UTF8, "application/json");
+
+                var result = Client.PatchAsync($"Topic/PatchTopic", stringContent).Result;
+
+                if (!result.IsSuccessStatusCode)
+                    throw new Exception(result.Content.ReadAsStringAsync().Result);
+            }
+            catch (Exception e)
+            {
+
+            }
+        }
+
         internal GetTopicsResponse GetTopics(int userId)
         {
             try
@@ -62,7 +95,7 @@ namespace RevisionApp.Services
                 
                 return response;
             }
-            catch(Exception)
+            catch(Exception e)
             {
                 return null;
             }

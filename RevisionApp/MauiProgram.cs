@@ -11,17 +11,17 @@ public static class MauiProgram
 	{
 		var builder = MauiApp.CreateBuilder();
 
-		builder.Services.AddScoped<MainPage>();
-		builder.Services.AddScoped<LoginViewModel>();
+		builder.Services.AddTransient<MainPage>();
+		builder.Services.AddTransient<LoginViewModel>();
 
-		builder.Services.AddScoped<CreateAccountPage>();
-		builder.Services.AddScoped<CreateAccountViewModel>();
+		builder.Services.AddTransient<CreateAccountPage>();
+		builder.Services.AddTransient<CreateAccountViewModel>();
 
-        builder.Services.AddScoped<HomePage>();
-        builder.Services.AddScoped<HomeViewModel>();
+        builder.Services.AddTransient<HomePage>();
+        builder.Services.AddTransient<HomeViewModel>();
 
-        builder.Services.AddScoped<TopicsPage>();
-        builder.Services.AddScoped<TopicsViewModel>();
+        builder.Services.AddTransient<TopicsPage>();
+        builder.Services.AddTransient<TopicsViewModel>();
 
         builder.Services.AddHttpClient<RevisionService>(client =>
         {

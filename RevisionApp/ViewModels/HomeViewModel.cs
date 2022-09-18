@@ -17,9 +17,11 @@ namespace RevisionApp.ViewModels
         public string Status { get; set; }
         public void OnCollectionViewSelectionChanged(object o)
         {
+            if (o is null) return;
             var topic = o as Topic;
             var popup = new TopicPopup(topic, _service);
             Page.ShowPopup(popup);
+            CurrentSelectedTopic = null;
         }
         public HomeViewModel(RevisionService service)
         {
@@ -30,6 +32,8 @@ namespace RevisionApp.ViewModels
         private void FillTopics()
         {
             var topics = _service.GetTopics(1);
+            if (topics is null) return;
+
             foreach (var topic in topics.Topics.Where(topic => topic.RevisionDateTime.Date == DateTime.Now.Date))
             {
                 Topics.Add(topic);

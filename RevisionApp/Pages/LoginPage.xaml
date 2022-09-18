@@ -18,9 +18,7 @@
                 
                 <controls:EntryView EntryPlaceholderText="Username" EntryText="{Binding Email, Mode=TwoWay}" ControlTemplate="{StaticResource EntryViewControlTemplate}"/>
                 <controls:EntryView EntryPlaceholderText="Password" EntryText="{Binding Password, Mode=TwoWay}" EntryIsPassword="True" ControlTemplate="{StaticResource EntryViewControlTemplate}"/>
-
                 <controls:ButtonView ButtonText="Login" ButtonCommand="{Binding LoginCommand}" ButtonColour="#bcf697" HorizontalOptions="End" ControlTemplate="{StaticResource ButtonViewControlTemplate}"/>
-               
                 <Label Text="{Binding Error, Mode=TwoWay}"
                    TextColor="Red"
                    FontSize="14"
@@ -46,5 +44,6 @@
                     BorderColor="Transparent"
                     BackgroundColor="Transparent"
                     Command="{Binding RegisterAccountCommand}"/>
+     
     </VerticalStackLayout>
 </ContentPage>

@@ -8,7 +8,7 @@
                     Margin="10"
                     Padding="4"
                     BackgroundColor="{Binding TopicColour}"
-                    WidthRequest="200"
+                    WidthRequest="150"
                     HeightRequest="150"
                     StrokeThickness="0">
                 <VerticalStackLayout>

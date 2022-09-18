@@ -7,8 +7,6 @@
             <Border BindingContext="{Binding Source={RelativeSource TemplatedParent}}"
                     Margin="10"
                     BackgroundColor="{Binding ButtonColour}"
-                    WidthRequest="80"
-                    HeightRequest="40"
                     StrokeThickness="0">
                 <Button Text="{Binding ButtonText}" TextColor="Black"  BackgroundColor="Transparent" Command="{Binding ButtonCommand}"/>
                 <Border.StrokeShape>
