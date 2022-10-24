@@ -27,10 +27,6 @@ namespace RevisionApp.ViewModels
         }
         private void Login()
         {
-            Shell.Current.GoToAsync("//HomePage");
-
-            return;
-
             if (!Email.Contains('@'))
             {
                 Error = "Invalid Email";
@@ -41,6 +37,9 @@ namespace RevisionApp.ViewModels
 
             if (response.Success)
             {
+                UserManager.UserId = response.UserId;
+                UserManager.Name = response.Name;
+
                 Shell.Current.GoToAsync("//HomePage");
                 return;
             }
@@ -52,7 +51,5 @@ namespace RevisionApp.ViewModels
         {
             Shell.Current.GoToAsync("//CreateAccountPage");
         }
-
-       
     }
 }

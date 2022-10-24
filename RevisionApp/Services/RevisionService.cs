@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using Microsoft.Maui.ApplicationModel.Communication;
+using Newtonsoft.Json;
 using RevisionApp.Services.Dto.Request;
 using RevisionApp.Services.Dto.Response;
 using System.Text;
@@ -11,11 +12,11 @@ namespace RevisionApp.Services
 
         public RevisionService(HttpClient client) => Client = client;
         
-        public CreateAccountResponse CreateAccount(string email, string password)
+        public CreateAccountResponse CreateAccount(string email, string name, string password)
         {
             try
             {
-                var request = new CreateAccountRequest(email, password);
+                var request = new CreateAccountRequest(email,name, password);
                 var stringContent = new StringContent(JsonConvert.SerializeObject(request), Encoding.UTF8, "application/json");
 
                 var result = Client.PostAsync($"User/CreateUser", stringContent).Result;
@@ -58,12 +59,12 @@ namespace RevisionApp.Services
             {
                 var stringContent = new StringContent(JsonConvert.SerializeObject(request), Encoding.UTF8, "application/json");
 
-                var result = Client.PostAsync($"Topic/PostTopic", stringContent).Result;
+                var result = Client.PostAsync($"Topic/CreateTopic", stringContent).Result;
 
                 if (!result.IsSuccessStatusCode)
                     throw new Exception(result.Content.ReadAsStringAsync().Result);
             }
-            catch (Exception e)
+            catch
             {
                 
             }
@@ -79,13 +80,13 @@ namespace RevisionApp.Services
                 if (!result.IsSuccessStatusCode)
                     throw new Exception(result.Content.ReadAsStringAsync().Result);
             }
-            catch (Exception e)
+            catch
             {
 
             }
         }
 
-        internal GetTopicsResponse GetTopics(int userId)
+        internal GetTopicsResponse GetTopics(string userId)
         {
             try
             {
@@ -95,10 +96,20 @@ namespace RevisionApp.Services
                 
                 return response;
             }
-            catch(Exception e)
+            catch
             {
                 return null;
             }
+        }
+
+        internal void Revise(int id, int userId)
+        {
+            var request = new SendReviseRequest(id, userId);
+            var stringContent = new StringContent(JsonConvert.SerializeObject(request), Encoding.UTF8, "application/json");
+            
+            var result = Client.PostAsync($"Topic/Revise", stringContent).Result;
+            if (!result.IsSuccessStatusCode)
+                throw new Exception(result.Content.ReadAsStringAsync().Result);
         }
     }
 }

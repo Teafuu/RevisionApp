@@ -7,7 +7,7 @@
              BackgroundColor="White">
         <ScrollView>
             <VerticalStackLayout HorizontalOptions="Center">
-                <Label Text = "Hello Max" Style="{StaticResource HeaderStyle}"/>
+                <Label Text = "{Binding Name}" Style="{StaticResource HeaderStyle}"/>
                 <Border BackgroundColor="#9ff06d"
                     Padding="15"
                     StrokeThickness="0">

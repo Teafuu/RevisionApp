@@ -1,17 +1,17 @@
 ﻿<toolkit:Popup xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-               xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
                xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
-               x:Class="RevisionApp.Views.TopicPatchPopup"
-                xmlns:controls="clr-namespace:RevisionApp.Views"
+               xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+               xmlns:controls="clr-namespace:RevisionApp.Views"
+               x:Class="RevisionApp.Views.TopicCreatePopup"
                Color="Transparent"
                Size="300, 300">
-
-    <Border Margin="10" Padding="4" BackgroundColor="{Binding TopicColour}" StrokeThickness="0">
+    
+        <Border Margin="10" Padding="4" BackgroundColor="#9ff06d" StrokeThickness="0">
         <ScrollView >
             <VerticalStackLayout>
-                <Label Text="Edit Topic" Style="{StaticResource HeaderStyle}" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
-                <controls:EntryView EntryText="{Binding TopicTitle, Mode=TwoWay}" ControlTemplate="{StaticResource EntryViewControlTemplate}"/>
-                <controls:EntryView EntryText="{Binding TopicDescription, Mode=TwoWay}" ControlTemplate="{StaticResource EntryViewControlTemplate}"/>
+                <Label Text="Create Topic" Style="{StaticResource HeaderStyle}" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
+                <controls:EntryView EntryPlaceholderText="Topic Title" EntryText="{Binding TopicTitle, Mode=TwoWay}" ControlTemplate="{StaticResource EntryViewControlTemplate}"/>
+                <controls:EntryView EntryPlaceholderText="Topic Description" EntryText="{Binding TopicDescription, Mode=TwoWay}" ControlTemplate="{StaticResource EntryViewControlTemplate}"/>
                 <Border BackgroundColor="#9ff06d" Margin="25">
                     <VerticalStackLayout>
                         <RadioButton TextColor="Pink" GroupName="Colors"  Margin="5" Padding="0" Content="■" CheckedChanged="OnColorsRadioButtonCheckedChanged"/>
@@ -23,22 +23,28 @@
                     <Border.StrokeShape>
                         <RoundRectangle CornerRadius="14" />
                     </Border.StrokeShape>
+                    <Border.Shadow>
+                        <Shadow Brush="Black"
+                            Offset="1, 5"
+                            Radius="5"
+                            Opacity="0.4" />
+                    </Border.Shadow>
                 </Border>
-                <DatePicker Date="{Binding TopicDate}" TextColor="SaddleBrown"/>
+                <DatePicker TextColor="SaddleBrown" Date="{Binding TopicDate}"/>
                 <HorizontalStackLayout HorizontalOptions="Center">
                     <controls:ButtonView ButtonText="Cancel" ButtonColour="#ff8f8f" ButtonCommand="{Binding CancelCommand}" ControlTemplate="{StaticResource ButtonViewControlTemplate}"/>
-                    <controls:ButtonView ButtonText="Update" ButtonColour="#bcf697" ButtonCommand="{Binding UpdateCommand}" ControlTemplate="{StaticResource ButtonViewControlTemplate}"/>
+                    <controls:ButtonView ButtonText="Create" ButtonColour="#bcf697" ButtonCommand="{Binding CreateCommand}" ControlTemplate="{StaticResource ButtonViewControlTemplate}"/>
                 </HorizontalStackLayout>
             </VerticalStackLayout>
         </ScrollView>
         <Border.StrokeShape>
-            <RoundRectangle CornerRadius="30"/>
-        </Border.StrokeShape>
-        <Border.Shadow>
-            <Shadow Brush="Black"
+                    <RoundRectangle CornerRadius="30"/>
+                </Border.StrokeShape>
+                <Border.Shadow>
+                <Shadow Brush="Black"
                             Offset="1, 5"
                             Radius="5"
                             Opacity="0.4" />
-        </Border.Shadow>
-    </Border>
+            </Border.Shadow>
+        </Border>
 </toolkit:Popup>

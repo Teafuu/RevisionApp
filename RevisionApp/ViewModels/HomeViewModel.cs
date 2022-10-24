@@ -6,7 +6,7 @@ using System.Collections.ObjectModel;
 
 namespace RevisionApp.ViewModels
 {
-    public class HomeViewModel
+    public class HomeViewModel : BaseViewModel
     {
         private readonly RevisionService _service;
         static Page Page => Application.Current?.MainPage ?? throw new NullReferenceException();
@@ -15,11 +15,14 @@ namespace RevisionApp.ViewModels
         public Command CollectionChangeCommand => new Command(OnCollectionViewSelectionChanged);
         public Topic CurrentSelectedTopic { get; set; }
         public string Status { get; set; }
+        public string Name { get; set; }
+       
         public void OnCollectionViewSelectionChanged(object o)
         {
             if (o is null) return;
+
             var topic = o as Topic;
-            var popup = new TopicPopup(topic, _service);
+            var popup = new TopicPopup(topic, _service, this);
             Page.ShowPopup(popup);
             CurrentSelectedTopic = null;
         }
@@ -27,20 +30,21 @@ namespace RevisionApp.ViewModels
         {
             _service = service;
             Topics = new ObservableCollection<Topic>();
+            Name = UserManager.Name;
             FillTopics();
         }
-        private void FillTopics()
+        public void FillTopics()
         {
-            var topics = _service.GetTopics(1);
-            if (topics is null) return;
+            var topics = _service.GetTopics(UserManager.UserId);
+            if (topics?.Topics is null) return;
 
-            foreach (var topic in topics.Topics.Where(topic => topic.RevisionDateTime.Date == DateTime.Now.Date))
+            if (topics?.Topics == null)
+                return;
+
+            Topics.Clear();
+            foreach (var topic in topics.Topics.Where(topic => topic.RevisionDateTime.Date == DateTime.Now.Date && topic.LastRevisedDateTime.Date != DateTime.Now.Date))
             {
                 Topics.Add(topic);
-            }
-            if(Topics.Count == 0)
-            {
-                Status = "You have nothing to revise";
             }
         }
     }

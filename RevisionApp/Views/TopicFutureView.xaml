@@ -14,7 +14,7 @@
                 <VerticalStackLayout>
                     <Label Padding="15" Text="{Binding TopicTitle}" Style="{StaticResource TextStyle}" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
                     <Label Padding="15" Text="Next revision:" Style="{StaticResource TextStyle}" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
-                    <Label Text="{Binding RevisionDate}" Style="{StaticResource TextStyle}" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
+                    <Label Text="{Binding TopicRevisionDate}" Style="{StaticResource TextStyle}" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
                 </VerticalStackLayout>
                 <Border.StrokeShape>
                     <RoundRectangle CornerRadius="30"/>

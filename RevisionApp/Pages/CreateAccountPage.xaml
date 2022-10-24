@@ -2,52 +2,50 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="RevisionApp.Pages.CreateAccountPage"
+             xmlns:controls="clr-namespace:RevisionApp.Views"
              Title="CreateAccountPage"
              BackgroundColor="White">
-    <ScrollView>
-        <VerticalStackLayout
-            Spacing="25"
-            Padding="30,0"
-            VerticalOptions="Center">
 
-            <Label Text="Create Account"
-                   TextColor="SaddleBrown"
-                   FontSize="60"
-                   HorizontalOptions="Center"/>
+    <VerticalStackLayout>
+        <Label Text="Create Account" Style="{StaticResource HeaderStyle}" HorizontalTextAlignment="Start"/>
+        <Border BackgroundColor="#9ff06d"
+                Margin="10"
+                Padding="20"
+                WidthRequest="300"
+                StrokeThickness="0">
+            <ScrollView>
+                <VerticalStackLayout
+                    VerticalOptions="Center">
 
-            <Entry
-                   Text="{Binding Email}"
-                   MaxLength="30"
-                   Placeholder="Email"
-                   HorizontalOptions="Center"
-                   WidthRequest="200"/>
 
-            <Entry
-                   Text="{Binding Password}"
-                   MaxLength="30"
-                   Placeholder="Password"
-                   HorizontalOptions="Center"
-                   WidthRequest="200"
-                   IsPassword="True"/>
-            
-            <Entry
-                   Text="{Binding ValidatePassword}"
-                   MaxLength="30"
-                   Placeholder="Re-enter Password"
-                   HorizontalOptions="Center"
-                   WidthRequest="200"
-                   IsPassword="True"/>
+                    <controls:EntryView EntryPlaceholderText="Email:" EntryText="{Binding Email, Mode=TwoWay}" ControlTemplate="{StaticResource EntryViewControlTemplate}"/>
 
-            <Button Text="Register" 
-                    HorizontalOptions="Center"
-                    Command="{Binding RegisterCommand}"/>
+                    <controls:EntryView EntryPlaceholderText="Name: " EntryText="{Binding Name, Mode=TwoWay}" ControlTemplate="{StaticResource EntryViewControlTemplate}"/>
 
-            <Label Text="{Binding Error, Mode=TwoWay}"
-                   TextColor="Red"
-                   FontSize="14"
-                   HorizontalOptions="Center"
-                   VerticalOptions="Center"/>
+                    <controls:EntryView EntryPlaceholderText="Password:" EntryText="{Binding Password, Mode=TwoWay}" EntryIsPassword="True" ControlTemplate="{StaticResource EntryViewControlTemplate}"/>
 
-        </VerticalStackLayout>
-    </ScrollView>
+                    <controls:EntryView EntryPlaceholderText="Validate Password: " EntryText="{Binding ValidatePassword, Mode=TwoWay}" EntryIsPassword="True" ControlTemplate="{StaticResource EntryViewControlTemplate}"/>
+
+                    <controls:ButtonView ButtonText="Register" ButtonCommand="{Binding RegisterCommand}" ButtonColour="#bcf697" HorizontalOptions="End" ControlTemplate="{StaticResource ButtonViewControlTemplate}"/>
+
+                    <Label Text="{Binding Error, Mode=TwoWay}"
+                       TextColor="Red"
+                       FontSize="14"
+                       HorizontalOptions="Center"
+                       VerticalOptions="Center"/>
+
+                </VerticalStackLayout>
+            </ScrollView>
+            <Border.StrokeShape>
+                <RoundRectangle CornerRadius="24" />
+            </Border.StrokeShape>
+            <Border.Shadow>
+                <Shadow Brush="Black"
+                            Offset="1, 1"
+                            Radius="5"
+                            Opacity="0.8" />
+            </Border.Shadow>
+        </Border>
+    </VerticalStackLayout>
+   
 </ContentPage>

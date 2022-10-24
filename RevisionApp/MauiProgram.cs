@@ -11,31 +11,32 @@ public static class MauiProgram
 	{
 		var builder = MauiApp.CreateBuilder();
 
-		builder.Services.AddTransient<MainPage>();
-		builder.Services.AddTransient<LoginViewModel>();
+        builder
+           .UseMauiApp<App>()
+           .UseMauiCommunityToolkit()
+           .ConfigureFonts(fonts =>
+           {
+               fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
+               fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
+           });
 
-		builder.Services.AddTransient<CreateAccountPage>();
-		builder.Services.AddTransient<CreateAccountViewModel>();
-
-        builder.Services.AddTransient<HomePage>();
-        builder.Services.AddTransient<HomeViewModel>();
-
-        builder.Services.AddTransient<TopicsPage>();
-        builder.Services.AddTransient<TopicsViewModel>();
-
+        //Address for Revision API
         builder.Services.AddHttpClient<RevisionService>(client =>
         {
             client.BaseAddress = new Uri("https://localhost:7142");
         });
 
-        builder
-			.UseMauiApp<App>()
-			.UseMauiCommunityToolkit()
-			.ConfigureFonts(fonts =>
-			{
-				fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
-				fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
-			});
+        builder.Services.AddScoped<MainPage, LoginViewModel>();
+
+        builder.Services.AddScoped<CreateAccountPage, CreateAccountViewModel>();
+
+        builder.Services.AddScoped<HomePage, HomeViewModel>();
+
+        builder.Services.AddScoped<TopicsPage, TopicsViewModel>();
+
+
+
+       
 
 		return builder.Build();
 	}

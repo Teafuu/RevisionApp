@@ -11,8 +11,9 @@ namespace RevisionApp.ViewModels
     public class CreateAccountViewModel : BaseViewModel
     {
         public string Email { get; set; }
-        public string Password { get; set; }
-        public string ValidatePassword { get; set; }
+        public string Name { get; set; }
+        public string Password { get => _password; set { _password = value; OnPropertyChanged(); } }
+        public string ValidatePassword { get => _validatePassword; set { _validatePassword = value; OnPropertyChanged(); } }
         public string Error { get => _error; set { _error = value; OnPropertyChanged(); } }
 
         private readonly RevisionService _service;
@@ -20,6 +21,8 @@ namespace RevisionApp.ViewModels
 
         #region private properties
         private string _error;
+        private string _password;
+        private string _validatePassword;
         #endregion
         public CreateAccountViewModel(RevisionService service)
         {
@@ -36,13 +39,19 @@ namespace RevisionApp.ViewModels
                 return;
             }
 
-            if (!Email.Contains("@"))
+            if (!Email.Contains('@'))
             {
                 Error = "Invalid Email";
                 return;
             }
 
-            var result = _service.CreateAccount(Email, Password);
+            if (string.IsNullOrEmpty(Name))
+            {
+                Error = "Name is Empty";
+                return;
+            }   
+             
+            var result = _service.CreateAccount(Email, Name, Password);
 
             if(result.Success)
             {

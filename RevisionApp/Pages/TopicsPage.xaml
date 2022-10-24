@@ -10,7 +10,7 @@
     <ScrollView>
         <VerticalStackLayout>
             <Label Text = "Topics" Style="{StaticResource HeaderStyle}"/>
-            <controls:ButtonView ButtonText="+" ButtonCommand="{Binding LoginCommand}" ButtonColour="#bcf697" HorizontalOptions="End" ControlTemplate="{StaticResource ButtonViewControlTemplate}"/>
+            <controls:ButtonView ButtonText="+" ButtonCommand="{Binding AddTopicCommand}" ButtonColour="#bcf697" HorizontalOptions="End" ControlTemplate="{StaticResource ButtonViewControlTemplate}"/>
             <CollectionView x:Name="TopicCollectionView" 
                         ItemsSource="{Binding Topics}" Margin="10"
                         SelectionMode="Single"
@@ -26,7 +26,7 @@
                             TopicColour="{Binding MauiColour}"
                             ControlTemplate="{StaticResource TopicFutureViewControlTemplate}"/>
                     </DataTemplate>
-                </CollectionView.ItemTemplate>
+                </CollectionView.ItemTemplate>      
                 <CollectionView.ItemsLayout>
                     <GridItemsLayout 
                     Orientation="Vertical"

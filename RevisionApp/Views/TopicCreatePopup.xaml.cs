@@ -5,31 +5,24 @@ using RevisionApp.Services.Dto.Response;
 using RevisionApp.ViewModels;
 
 namespace RevisionApp.Views;
-public partial class TopicPatchPopup : Popup
+public partial class TopicCreatePopup : Popup
 {
-	public Topic Topic { get; set; }
     public string TopicTitle { get; set; }
     public string TopicDescription { get; set; }
 	public DateTime TopicDate { get; set; }
-	public Color TopicColour => Color.Parse(Topic.Color);
-
 	public Command CancelCommand => new(OnCancelPressed);
-	public Command UpdateCommand => new(OnUpdatePressed);
+	public Command CreateCommand => new(OnCreatePressed);
 	public string ChosenColor { get; set; }
 
     private readonly RevisionService _service;
     private readonly TopicsViewModel _model;
 
-    public TopicPatchPopup(Topic topic, RevisionService service, TopicsViewModel model)
+    public TopicCreatePopup(RevisionService service, TopicsViewModel model)
 	{
 		_service = service;
         _model = model;
-
-        Topic = topic;
-		TopicTitle = topic.Title;
-		TopicDescription = topic.Description;
-		TopicDate = topic.RevisionDateTime;
-		BindingContext = this;
+        TopicDate = DateTime.Now;
+        BindingContext = this;
 		InitializeComponent();
 	}
     void OnColorsRadioButtonCheckedChanged(object sender, CheckedChangedEventArgs e)
@@ -41,18 +34,16 @@ public partial class TopicPatchPopup : Popup
 	{
 		Close();
 	}
-	public void OnUpdatePressed()
+	public void OnCreatePressed()
 	{
-		_service.PatchTopic(new PatchTopicRequest
+		_service.CreateTopic(new CreateTopicRequest
 		{
-			Color = ChosenColor ?? Topic.Color,
+			Color = ChosenColor,
 			Description = TopicDescription,
 			Title = TopicTitle,
-			Id = Topic.Id,
-			RevisionDateTime = TopicDate,
 			UserId = UserManager.UserId,
+			RevisionDateTime = TopicDate,
 		});
-
 		_model.FillTopics();
         Close();
     }

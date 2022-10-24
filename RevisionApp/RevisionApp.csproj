@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
-		<TargetFrameworks>net6.0-android;net6.0-ios;net6.0-maccatalyst</TargetFrameworks>
+		<TargetFrameworks>net6.0-android;net6.0-maccatalyst;net6.0-ios</TargetFrameworks>
 		<TargetFrameworks Condition="$([MSBuild]::IsOSPlatform('windows'))">$(TargetFrameworks);net6.0-windows10.0.19041.0</TargetFrameworks>
 		<!-- Uncomment to also build the tizen app. You will need to install tizen by following this: https://github.com/Samsung/Tizen.NET -->
 		<!-- <TargetFrameworks>$(TargetFrameworks);net6.0-tizen</TargetFrameworks> -->
@@ -75,6 +75,9 @@
 	  <MauiXaml Update="Views\ButtonView.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	  <MauiXaml Update="Views\TopicCreatePopup.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Views\TopicPatchPopup.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
@@ -98,6 +101,9 @@
 	  </Compile>
 	  <Compile Update="Views\ButtonView.xaml.cs">
 	    <DependentUpon>ButtonView.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="Views\TopicCreatePopup.xaml.cs">
+	    <DependentUpon>TopicCreatePopup.xaml</DependentUpon>
 	  </Compile>
 	  <Compile Update="Views\TopicPatchPopup.xaml.cs">
 	    <DependentUpon>TopicPatchPopup.xaml</DependentUpon>
