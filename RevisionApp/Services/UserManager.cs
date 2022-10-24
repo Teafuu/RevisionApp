@@ -11,6 +11,5 @@ namespace RevisionApp.Services
     {
         public static string UserId { get; set; }
         public static string Name { get; set; }
-        public static TopicsPage TopicPage { get; set; }
     }
 }

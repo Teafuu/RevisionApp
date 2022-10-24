@@ -11,10 +11,10 @@ namespace RevisionApp.ViewModels
         public string Email { get; set; } = string.Empty;
         public string Password { get; set; } = string.Empty;
         public string Title { get; set; } = "Welcome!";
-        public string Error { get => _error; set { _error = value; OnPropertyChanged(nameof(Error));} } 
+        public string Error { get => _error; set { _error = value; OnPropertyChanged(nameof(Error));} }  // MAUI needs this to update UI
 
-        public Command LoginCommand => new(Login);
-        public Command RegisterAccountCommand => new(RegisterAccount);
+        public Command LoginCommand => new(Login); // Called on button click
+        public Command RegisterAccountCommand => new(RegisterAccount); // Called on button click
 
         #region private properties
         private string _error;
@@ -27,7 +27,7 @@ namespace RevisionApp.ViewModels
         }
         private void Login()
         {
-            if (!Email.Contains('@'))
+            if (!Email.Contains('@')) // Validating user input
             {
                 Error = "Invalid Email";
                 return;
@@ -40,7 +40,7 @@ namespace RevisionApp.ViewModels
                 UserManager.UserId = response.UserId;
                 UserManager.Name = response.Name;
 
-                Shell.Current.GoToAsync("//HomePage");
+                Shell.Current.GoToAsync("//HomePage"); // Navigates to login page
                 return;
             }
 
@@ -49,7 +49,7 @@ namespace RevisionApp.ViewModels
         }
         private void RegisterAccount() 
         {
-            Shell.Current.GoToAsync("//CreateAccountPage");
+            Shell.Current.GoToAsync("//CreateAccountPage"); // Navigates Create create account page
         }
     }
 }
