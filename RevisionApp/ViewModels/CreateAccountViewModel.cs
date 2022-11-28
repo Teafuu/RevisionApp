@@ -51,7 +51,7 @@ namespace RevisionApp.ViewModels
                 return;
             }   
              
-            var result = _service.CreateAccount(Email, Name, Password);
+            var result = _service.CreateAccount(Email, Name, Password, Preferences.Get("DeviceToken", ""));
 
             if(result.Success)
             {

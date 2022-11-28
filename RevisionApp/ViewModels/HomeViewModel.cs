@@ -36,10 +36,8 @@ namespace RevisionApp.ViewModels
         public void FillTopics()
         {
             var topics = _service.GetTopics(UserManager.UserId);
+            
             if (topics?.Topics is null) return;
-
-            if (topics?.Topics == null)
-                return;
 
             Topics.Clear();
             foreach (var topic in topics.Topics.Where(topic => topic.RevisionDateTime.Date == DateTime.Now.Date && topic.LastRevisedDateTime.Date != DateTime.Now.Date))

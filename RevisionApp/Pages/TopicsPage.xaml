@@ -2,11 +2,9 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:controls="clr-namespace:RevisionApp.Views"
-
              x:Class="RevisionApp.Pages.TopicsPage"
              Title="TopicsPage"
              BackgroundColor="White">
-
     <ScrollView>
         <VerticalStackLayout>
             <Label Text = "Topics" Style="{StaticResource HeaderStyle}"/>
@@ -26,13 +24,11 @@
                             TopicColour="{Binding MauiColour}"
                             ControlTemplate="{StaticResource TopicFutureViewControlTemplate}"/>
                     </DataTemplate>
-                </CollectionView.ItemTemplate>      
+                </CollectionView.ItemTemplate>
                 <CollectionView.ItemsLayout>
-                    <GridItemsLayout 
-                    Orientation="Vertical"
-                    Span="2"/>
+                    <GridItemsLayout Span="1" Orientation="Vertical"/>
                 </CollectionView.ItemsLayout>
             </CollectionView>
         </VerticalStackLayout>
-    </ScrollView>
+    </ScrollView> 
 </ContentPage>

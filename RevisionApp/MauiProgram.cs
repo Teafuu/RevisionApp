@@ -8,7 +8,7 @@ namespace RevisionApp;
 public static class MauiProgram
 {
 	public static MauiApp CreateMauiApp()
-	{
+	{ 
 		var builder = MauiApp.CreateBuilder();
 
         builder
@@ -23,20 +23,16 @@ public static class MauiProgram
         //Address for Revision API
         builder.Services.AddHttpClient<RevisionService>(client =>
         {
-            client.BaseAddress = new Uri("https://localhost:7142");
+            client.BaseAddress = new Uri("http://192.168.1.64:7142");
         });
 
         builder.Services.AddScoped<MainPage, LoginViewModel>();
-
+            
         builder.Services.AddScoped<CreateAccountPage, CreateAccountViewModel>();
 
         builder.Services.AddScoped<HomePage, HomeViewModel>();
 
         builder.Services.AddScoped<TopicsPage, TopicsViewModel>();
-
-
-
-       
 
 		return builder.Build();
 	}

@@ -12,11 +12,11 @@ namespace RevisionApp.Services
 
         public RevisionService(HttpClient client) => Client = client;
         
-        public CreateAccountResponse CreateAccount(string email, string name, string password)
+        public CreateAccountResponse CreateAccount(string email, string name, string password, string deviceToken)
         {
             try
             {
-                var request = new CreateAccountRequest(email,name, password);
+                var request = new CreateAccountRequest(email,name, password, deviceToken);
                 var stringContent = new StringContent(JsonConvert.SerializeObject(request), Encoding.UTF8, "application/json");
 
                 var result = Client.PostAsync($"User/CreateUser", stringContent).Result;

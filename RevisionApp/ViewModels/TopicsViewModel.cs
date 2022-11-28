@@ -16,6 +16,9 @@ namespace RevisionApp.ViewModels
         public Command CollectionChangeCommand => new Command(OnCollectionViewSelectionChanged);
         public Command AddTopicCommand => new Command(AddTopic);
         public Topic CurrentSelectedTopic { get; set; }
+        public int SpanCount { get => _spanCount; set { _spanCount = value; OnPropertyChanged(nameof(_spanCount)); } }  // MAUI needs this to update UI
+
+        private int _spanCount;
 
         public TopicsViewModel(RevisionService service)
         {
@@ -43,6 +46,11 @@ namespace RevisionApp.ViewModels
             var topics = _service.GetTopics(UserManager.UserId);
             if (topics?.Topics is null) return;
             Topics.Clear();
+
+            SpanCount = topics.Topics.Count > 1
+                ? 2
+                : 1;
+
             foreach(var topic in topics.Topics)
             {
                 Topics.Add(topic);
