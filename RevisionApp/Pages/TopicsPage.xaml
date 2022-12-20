@@ -9,26 +9,40 @@
         <VerticalStackLayout>
             <Label Text = "Topics" Style="{StaticResource HeaderStyle}"/>
             <controls:ButtonView ButtonText="+" ButtonCommand="{Binding AddTopicCommand}" ButtonColour="#bcf697" HorizontalOptions="End" ControlTemplate="{StaticResource ButtonViewControlTemplate}"/>
-            <CollectionView x:Name="TopicCollectionView" 
-                        ItemsSource="{Binding Topics}" Margin="10"
-                        SelectionMode="Single"
-                        SelectedItem="{Binding CurrentSelectedTopic}"
-                        SelectionChangedCommand="{Binding CollectionChangeCommand}"
-                        SelectionChangedCommandParameter="{Binding SelectedItem,Mode=TwoWay, Source={x:Reference TopicCollectionView}}"
-                        HorizontalOptions="Center">
-                <CollectionView.ItemTemplate>
-                    <DataTemplate>
-                        <controls:TopicFutureView
-                            TopicTitle="{Binding Title}"
-                            TopicRevisionDate="{Binding RevisionDate}"
-                            TopicColour="{Binding MauiColour}"
-                            ControlTemplate="{StaticResource TopicFutureViewControlTemplate}"/>
-                    </DataTemplate>
-                </CollectionView.ItemTemplate>
-                <CollectionView.ItemsLayout>
-                    <GridItemsLayout Span="1" Orientation="Vertical"/>
-                </CollectionView.ItemsLayout>
-            </CollectionView>
+            <Border BackgroundColor="#9ff06d"
+                    Padding="15"
+                    Margin="10"
+                    StrokeThickness="0"
+                    MinimumHeightRequest="100">
+                <VerticalStackLayout>
+                    <CollectionView x:Name="TopicCollectionView" 
+                                    ItemsSource="{Binding Topics}" Margin="10"
+                                    SelectionMode="Single"
+                                    SelectedItem="{Binding CurrentSelectedTopic}"
+                                    SelectionChangedCommand="{Binding CollectionChangeCommand}"
+                                    SelectionChangedCommandParameter="{Binding SelectedItem,Mode=TwoWay, Source={x:Reference TopicCollectionView}}"
+                                    HorizontalOptions="Center"> 
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate>
+                                <controls:TopicFutureView
+                                    TopicTitle="{Binding Title}"
+                                    TopicRevisionDate="{Binding RevisionDate}"
+                                    TopicColour="{Binding MauiColour}"
+                                    ControlTemplate="{StaticResource TopicFutureViewControlTemplate}"/>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+                </VerticalStackLayout>
+                <Border.StrokeShape>
+                    <RoundRectangle CornerRadius="14" />
+                </Border.StrokeShape>
+                <Border.Shadow>
+                    <Shadow Brush="Black"
+                            Offset="1, 1"
+                            Radius="5"
+                            Opacity="0.8" />
+                </Border.Shadow>
+            </Border>
         </VerticalStackLayout>
     </ScrollView> 
 </ContentPage>

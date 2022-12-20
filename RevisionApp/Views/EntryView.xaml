@@ -9,7 +9,7 @@
                     Padding="4"
                     BackgroundColor="White"
                     WidthRequest="200"
-                    HeightRequest="40"
+                    HeightRequest="50"
                     StrokeThickness="0">
                 <Entry IsPassword="{Binding EntryIsPassword}" Placeholder="{Binding EntryPlaceholderText}" Text="{Binding EntryText}" TextColor="SaddleBrown" PlaceholderColor="SandyBrown"/>
                 <Border.StrokeShape>

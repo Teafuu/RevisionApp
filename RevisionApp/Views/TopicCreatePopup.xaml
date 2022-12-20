@@ -15,10 +15,9 @@
                 <Border BackgroundColor="#9ff06d" Margin="25">
                     <VerticalStackLayout>
                         <RadioButton TextColor="Pink" GroupName="Colors"  Margin="5" Padding="0" Content="■" CheckedChanged="OnColorsRadioButtonCheckedChanged"/>
-                        <RadioButton TextColor="SaddleBrown" GroupName="Colors"  Margin="5" Padding="0" Content="■" CheckedChanged="OnColorsRadioButtonCheckedChanged"/>
                         <RadioButton TextColor="BurlyWood" GroupName="Colors"  Margin="5" Padding="0" Content="■" CheckedChanged="OnColorsRadioButtonCheckedChanged"/>
                         <RadioButton TextColor="Cyan" GroupName="Colors"  Margin="5" Padding="0" Content="■" CheckedChanged="OnColorsRadioButtonCheckedChanged"/>
-                        <RadioButton TextColor="Red" GroupName="Colors"  Margin="5" Padding="0" Content="■" CheckedChanged="OnColorsRadioButtonCheckedChanged"/>
+                        <RadioButton TextColor="PaleVioletRed" GroupName="Colors"  Margin="5" Padding="0" Content="■" CheckedChanged="OnColorsRadioButtonCheckedChanged"/>
                     </VerticalStackLayout>
                     <Border.StrokeShape>
                         <RoundRectangle CornerRadius="14" />

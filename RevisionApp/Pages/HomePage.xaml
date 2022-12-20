@@ -6,31 +6,34 @@
              Title="HomePage"
              BackgroundColor="White">
         <ScrollView>
-            <VerticalStackLayout HorizontalOptions="Center">
+            <VerticalStackLayout>
                 <Label Text = "{Binding Name}" Style="{StaticResource HeaderStyle}"/>
                 <Border BackgroundColor="#9ff06d"
-                    Padding="15"
-                    StrokeThickness="0">
+                        Padding="15"
+                        Margin="10"
+                        MinimumHeightRequest="150"
+                        StrokeThickness="0">
                     <VerticalStackLayout>
                         <Label Text="You have the following" Style="{StaticResource TextStyle}" TextColor="SaddleBrown"/>
                         <Label Text="revision to do today:" Style="{StaticResource TextStyle}" TextColor="SaddleBrown" Padding="0,0,0,20"/>
                         <Line BackgroundColor="SaddleBrown" StrokeThickness="1"/>
                         <Label Text="{Binding Status}" Style="{StaticResource TextStyle}" TextColor="SaddleBrown"/>
-                        <CollectionView x:Name="TopicCollectionView"
+
+                    <CollectionView x:Name="TopicCollectionView"
                                     ItemsSource="{Binding Topics}" Margin="50"
                                     SelectionMode="Single"
                                     SelectionChangedCommand="{Binding CollectionChangeCommand}"
                                     SelectionChangedCommandParameter="{Binding SelectedItem, Source={x:Reference TopicCollectionView}}">
-                            <CollectionView.ItemTemplate>
-                                <DataTemplate>
-                                    <controls:TopicView
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate>
+                                <controls:TopicView
                                     TopicTitle="{Binding Title}"
                                     TopicColour="{Binding MauiColour}"
                                     ControlTemplate="{StaticResource TopicViewControlTemplate}"/>
-                                </DataTemplate>
-                            </CollectionView.ItemTemplate>
-                        </CollectionView>
-                    </VerticalStackLayout>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+                </VerticalStackLayout>
                     <Border.StrokeShape>
                         <RoundRectangle CornerRadius="14" />
                     </Border.StrokeShape>

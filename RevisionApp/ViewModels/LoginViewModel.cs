@@ -49,6 +49,9 @@ namespace RevisionApp.ViewModels
         }
         private void RegisterAccount() 
         {
+            Email = string.Empty;
+            Password = string.Empty;
+
             Shell.Current.GoToAsync("//CreateAccountPage"); // Navigates Create create account page
         }
     }
